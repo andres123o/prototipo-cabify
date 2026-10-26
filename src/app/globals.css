@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+/*
+  Lineamientos de cabify.com, leídos de su CSS (dotcom.css) el 26 oct 2026.
+  Detalle completo en DISENO.md. Solo modo claro, como el original.
+*/
+@font-face {
+  font-family: "Cabify Ciudad";
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cabify.com/static/fonts/cabify-ciudad/CabifyCiudad-Book.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cabify Ciudad";
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://cabify.com/static/fonts/cabify-ciudad/CabifyCiudad-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cabify Ciudad";
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://cabify.com/static/fonts/cabify-ciudad/CabifyCiudad-Bold.woff2") format("woff2");
+}
+
+:root {
+  /* Morado de marca */
+  --m0: #f8f8fe;
+  --m10: #f2f2fd;
+  --m20: #dddaf9;
+  --m30: #c4bdf5;
+  --m40: #a697ed;
+  --m50: #8a6ee4;
+  --m60: #7145d6;
+  --m70: #5b34ac;
+  --m80: #4a2b8d;
+  --m90: #362065;
+  --m100: #1f123f;
+
+  /* Neutros */
+  --n0: #f8f8fb;
+  --n10: #f3f3f7;
+  --n20: #dbdce8;
+  --n60: #5e6088;
+  --n100: #1a1a1c;
+
+  /* Acentos */
+  --g10: #dafaeb;
+  --g60: #017251;
+  --o0: #fff8eb;
+  --o60: #a64707;
+  --b10: #ecf4fd;
+  --b60: #2760c2;
+
+  /* Espaciado (> 1540 px) */
+  --s-2xs: 8px;
+  --s-xs: 12px;
+  --s-s: 16px;
+  --s-m: 24px;
+  --s-l: 36px;
+  --s-xl: 48px;
+  --s-2xl: 72px;
+  --s-3xl: 120px;
+
+  /* Radios */
+  --r-xs: 8px;
+  --r-s: 16px;
+  --r-m: 24px;
+  --r-l: 36px;
+  --r-xl: 48px;
+  --r-2xl: 96px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (width <= 1540px) {
+  :root {
+    --s-2xs: 6px;
+    --s-xs: 8px;
+    --s-s: 12px;
+    --s-m: 16px;
+    --s-l: 24px;
+    --s-xl: 32px;
+    --s-2xl: 48px;
+    --s-3xl: 80px;
+    --r-s: 10px;
+    --r-m: 16px;
+    --r-l: 24px;
+    --r-xl: 32px;
+    --r-2xl: 64px;
+  }
+}
+
+@media (width <= 767px) {
+  :root {
+    --s-l: 20px;
+    --s-xl: 24px;
+    --s-2xl: 32px;
+    --s-3xl: 40px;
+  }
+}
+
+@theme inline {
+  --font-cabify: "Cabify Ciudad", system-ui, sans-serif;
+}
+
+body {
+  background: #fff;
+  color: var(--n100);
+  font-family: var(--font-cabify);
+  font-weight: 400;
+}
+
+/* Contenedor ancho: aprovecha la pantalla con gutters de 16 a 48 px */
+.contenedor {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 3.5vw, 48px);
+}
+
+/* Botón e-cta de Cabify */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2xs);
+  min-height: 56px;
+  padding: var(--s-2xs) var(--s-m);
+  border-radius: var(--r-xs);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  transition: background-color 0.25s ease-out;
+}
+.cta-primario {
+  background: var(--m100);
+  color: #fff;
+}
+.cta-primario:hover {
+  background: var(--m90);
+}
+.cta-claro {
+  background: #fff;
+  color: var(--m100);
+}
+.cta-claro:hover {
+  background: var(--m10);
+}
+@media (width <= 1024px) {
+  .cta {
+    min-height: 50px;
+    font-size: 18px;
+  }
+}
+
+/* Escala de títulos de Cabify */
+.titulo-xl {
+  font-weight: 700;
+  font-size: clamp(40px, 4.4vw, 64px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.titulo-l {
+  font-weight: 700;
+  font-size: clamp(32px, 3.2vw, 48px);
+  line-height: 1.16;
+}
+.titulo-m {
+  font-weight: 700;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.25;
+}
+
+/* Manchas difusas de fondo */
+.mancha {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Animaciones de las secciones de perros y gatos */
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--giro, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--giro, 0deg));
+  }
+}
+.flotar {
+  animation: flotar 6s var(--ease) infinite;
+}
+.flotar-lento {
+  animation: flotar 8s var(--ease) infinite;
+  animation-delay: -2s;
+}
+
+@keyframes huella {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6) rotate(var(--giro, 0deg));
+  }
+  20%,
+  60% {
+    opacity: 1;
+    transform: scale(1) rotate(var(--giro, 0deg));
+  }
+}
+.huella {
+  opacity: 0;
+  animation: huella 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flotar,
+  .flotar-lento,
+  .huella {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}

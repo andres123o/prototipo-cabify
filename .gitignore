@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+.env*
+.vercel
+
+# Notas privadas: no se publican
+INVESTIGACION.md
+DISENO.md
+MENSAJES.md
+.ref/
